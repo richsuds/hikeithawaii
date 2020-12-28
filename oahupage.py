@@ -1061,4 +1061,4 @@ def oahuinfo():
     kolekole_hikes = "Kolekole Pass - Pu'u Haupapa"
     kolekole_mud1 = "Conditions: " + kolekole_mud
 
-    return render_template('oahuv2.html',**locals())
+    return render_template('oahu.html',**locals())

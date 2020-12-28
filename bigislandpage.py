@@ -889,4 +889,4 @@ def bigislandinfo():
     kohala_falls1 = "Waterfalls Flowing: " + kohala_falls
 
 
-    return render_template('bigislandv2.html',**locals())
+    return render_template('bigisland.html',**locals())

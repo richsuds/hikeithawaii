@@ -310,4 +310,4 @@ def homeinfo():
     uvexposure = "UV Exposure"
     uvi = 'UV Index:' + indexnumstring + ' | ' + explvl
 
-    return render_template('homev2.html',**locals())
+    return render_template('home.html',**locals())

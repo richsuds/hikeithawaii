@@ -703,4 +703,4 @@ def mauiinfo():
     lahaina_mud1 = "Conditions: " + lahaina_mud
     lahaina_falls1 = "Waterfalls Flowing: " + lahaina_falls
 
-    return render_template('mauiv2.html',**locals())
+    return render_template('maui.html',**locals())
