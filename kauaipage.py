@@ -647,4 +647,4 @@ def kauaiinfo():
     leeward_mud1 = "Conditions: " + waimea_mud
     leeward_falls1 = "Waterfalls Flowing: " + waimea_falls
 
-    return render_template('kauai.html',**locals())
+    return render_template('kauaiv2.html',**locals())

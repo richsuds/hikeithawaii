@@ -25,4 +25,4 @@ def aboutinfo():
                   Under no circumstance are we, or any third party affiliates, liable for any loss or damage of any kind \
                   incurred as a result of the use of this site."
 
-    return render_template('about.html',**locals())
+    return render_template('aboutv2.html',**locals())
