@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172327056-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-172327056-1');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NFFZP78');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Hikeit Hawaii provides Hiking Weather Forecasts, Current Weather Conditions,
+    Trail Muddiness predictions, and Waterfall Flow predictions for the Hawaiian Islands numerous hiking locations.
+    It also relays NWS Hazards and UV Index reports to help you safely plan your next Hawaiian hiking adventure.
+    Planning on hiking in Hawaii? Want to know how muddy the trails likely are? Wondering which waterfalls are likely flowing?
+    Check here to find out the conditions.">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/hikeithawaiilogo_favicon.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/hikeithawaiilogo_favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/hikeithawaiilogo_favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/hikeithawaiilogo_favicon.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/hikeithawaiilogo_favicon.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
+    {% if title %}
+        <title>Hikeit Hawaii - {{ title }}</title>
+    {% else %}
+        <title>Hikeit Hawaii</title>
+    {% endif %}
+</head>
+<body style="font-family:'Oswald', sans-serif;">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=UA-172327056-1"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NFFZP78"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Hikeit Hawaii</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="/oahu">Oahu</a>
+              <a class="nav-item nav-link" href="/kauai">Kauai</a>
+              <a class="nav-item nav-link" href="/maui">Maui</a>
+              <a class="nav-item nav-link" href="/bigisland">Big Island</a>
+              <a class="nav-item nav-link" href="/about">About</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <br>
+    <main class="container-fluid" style="background-image: url('/static/waipiovalley_cropped2.jpg');">
+        <div class="container-fluid">
+        <br>
+        <br>
+           <div class="container" style="min-height: 100px;"><center><img src="/static/hikeithawaiilogo.png"></div>
+                <div class="container" style="min-height: 25px;">
+                    <h5 style="color:white"><center>{{ summary }}<center></h5>
+                </div><br>
+
+                <div class="container" style="min-height: 50px;"><center>
+                  <a href="https://www.facebook.com/hikeithawaii" class="fa fa-facebook"
+                  style="background-color:#3B5998; color:white; padding:8px; font-size:35px; width:50px; text-align:text-bottom; text-decoration:none; border-radius: 50%;";>
+                </a>
+                <a href="https://www.instagram.com/hikeithawaii/" class="fa fa-instagram"
+                  style="background-color:#d6249f; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); color:white; padding:8px; font-size:35px; width:50px; text-align:center; text-decoration:none; border-radius: 50%;";>
+                </a>
+                </div><br>
+
+
+            <div class="article-metadata"><center>
+              <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Choose your Island...
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item nav-item nav-link" href="/oahu">Oahu</a>
+                  <a class="dropdown-item nav-item nav-link" href="/kauai">Kauai</a>
+                  <a class="dropdown-item nav-item nav-link" href="/maui">Maui</a>
+                  <a class="dropdown-item nav-item nav-link" href="/bigisland">Big Island</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item nav-item nav-link" href="/about">About</a>
+                </div>
+              </div>&nbsp
+
+
+            </div>
+            <br><br>
+            <div class="article-metadata">
+                <h2 style="color:white"><strong>{{ island }}</strong></h2>
+            </div>
+            <div class="article-metadata" style="max-height: 110px;">
+              <a class="btn btn-secondary dropdown-toggle" data-toggle="collapse" href="#homedata" role="button" aria-expanded="false" aria-controls="homedata">
+                Todays Forecast / Hazards / UV Index
+              </a>
+            </div>
+            <div class="collapse" id="homedata">
+                <div class="alert alert-primary" role="alert" style="opacity:0.95">
+                  <h5 class="alert-heading">Kauai-Oahu-Molokai-Maui-Lanai</h5>
+                  <p>{{ all_island_fcst }}</p>
+                  <h5 class="alert-heading">Big Island</h5>
+                  <a>{{ big_island_fcst }}</a>
+            </div>
+            <div class="alert alert-primary" role="alert" style="opacity:0.95">
+                <h5 class="alert-heading">NWS Watches/Warnings/Advisories</h5>
+                <div class="p-3 mb-2 bg-danger text-white">{{ wwas }}</div>
+            </div>
+            <div class="alert alert-primary" role="alert" style="opacity:0.95">
+                <h4><span class="badge badge-pill badge-warning">{{ uvi }}</span></h4>
+                <img src="/static/uvi_legend.png" width="280" height="30">
+            </div>
+            </div>
+            <div class="article-metadata carousel slide">
+                <div id="carouselExampleSlidesOnly" class="carousel-fade" data-ride="carousel" style="min-height: 200px;">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div class="alert alert-primary" role="alert" style="min-height: 125px; opacity:0.95">
+                        <h5 class="alert-heading">Kauai-Oahu-Molokai-Maui-Lanai</h5>
+                         <p>{{ all_island_fcst }}</p>
+                      </div>
+                    </div>
+                      <div class="carousel-item">
+                        <div class="alert alert-primary" role="alert" style="min-height: 125px; opacity:0.95">
+                          <h5 class="alert-heading">Big Island</h5>
+                           <a>{{ big_island_fcst }}</a>
+                      </div>
+                    </div>
+
+                    <div class="carousel-item">
+                      <div class="alert alert-primary" role="alert" style="min-height: 125px; opacity:0.95">
+                        <h5 class="alert-heading">NWS Watches/Warnings/Advisories</h5>
+                          <div class="p-3 mb-2 bg-danger text-white">{{ wwas }}</div>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div class="alert alert-primary" role="alert" style="min-height: 125px; opacity:0.95">
+                        <h4><span class="badge badge-pill badge-warning">{{ uvi }}</span></h4>
+                        <img src="/static/uvi_legend.png" width="280" height="30">
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="alert alert-primary" role="alert" style="opacity:0.95">
+                <h5 class="alert-heading">Current Satellite Loop</h5>
+                    <p style="text-align: left;">
+                        <img class="img-fluid" src="https://cdn.star.nesdis.noaa.gov/GOES17/ABI/SECTOR/hi/GEOCOLOR/GOES17-HI-GEOCOLOR-600x600.gif" alt="https://cdn.star.nesdis.noaa.gov/GOES17/ABI/SECTOR/hi/GEOCOLOR/GOES17-HI-GEOCOLOR-600x600.gif"; "Responsive image";>
+                    </p>
+                <h5 class="alert-heading">Current Radar Loop</h5>
+                    <p style="text-align: left;">
+                        <img class="img-fluid" src="https://radar.weather.gov/Conus/Loop/hawaiiLoop.gif" alt="https://radar.weather.gov/Conus/Loop/hawaiiLoop.gif"; "Responsive image";>
+                    </p>
+
+                </div>
+            </div>
+            <br>
+            <div class="alert alert-primary" role="alert" style="opacity:0.95">
+            <h3 style="color:darkblue"><center><strong>About our Mud and Waterfall Estimates</strong></h2></center><br>
+            <p class="lead" style="color:darkblue">
+
+              &nbsp &nbsp The Trail Conditions (Muddiness) and Waterfall Flow estimates provided by Hikeit Hawaii are
+              based on observed rain reports throughout the state. These estimates are exclusive to Hikeit Hawaii.
+              Accuracy of these estimates vary by location as some trails are closer to observation points than others. We are
+              constantly monitoring and updating the estimate algorithms based on feedback from the community and our own
+              explorations of trails to verify condition accuracy.<br><br>
+
+              &nbsp &nbsp All weather observations and weather forecasts are generated by the National Weather Service Honolulu and
+              are relayed to hikeithawaii.com to consolidate the hiking weather and conditions into one convenient place. <br><br>
+
+              &nbsp &nbsp <i>*Disclaimer: The conditions, estimates, observations, and forecasts provided by HikeIt Hawaii are for informational
+              purposes only. Weather data collected from the National Weather Service could be outdated or inaccurate.
+              Use caution and check all available resources before hiking. Under no circumstance are we, or any third party affiliates,
+              liable for any loss or damage of any kind incurred as a result of the use of this site. </i><br><br>
+
+            </p>
+            </div>
+            <div class="alert alert-primary" role="alert" style="opacity:0.95">
+            <h3 style="color:darkblue"><center><strong>Why Weather and Conditions matter</strong></h2></center><br>
+            <p class="lead" style="color:darkblue">
+
+              &nbsp &nbsp Hiking is one of the most popular activities in Hawai’i, and for good reason.
+              The weather is ideal year round and there’s a lot of options when it comes to
+              choosing what type of hike you’d like to do and the various scenic options you
+              want to experience. Hawai’is scenic views, waterfalls, and plant life primarily
+              stem from the unique and drastic contrast between mountain (Mauka) and ocean (Makai).
+              The combination of tropical weather and volcanic terrain provide some of the best
+              hiking experiences anywhere in the world. <br><br>
+
+              &nbsp &nbsp The terrain in Hawai’i has a significant influence on the local weather as well
+              as the effects of the weather. It creates micro climates, causing clouds and rain
+              in certain areas (typically the windward and mountain regions) and drier climates
+              in others (Leeward regions). The high elevation on some of the mountains can create
+              freezing climates during winter months. <br><br>
+
+              &nbsp &nbsp Combined, the terrain and rainfall can also lead to dangerous scenarios where hikers
+              get lost, caught in flash floods, or even slip and fall off cliffs. Many of these incidents
+              can be avoided by checking weather conditions before going and understanding what type of
+              affect the weather conditions will have on trails. <br><br>
+
+              &nbsp &nbsp Typical weather patterns for the majority of the lower lying terrain (3,000 ft and below)
+              consist of scattered clouds and isolated rain showers, although thunderstorms (with lightning and hail),
+              flash floods, and droughts are relatively common during their respective seasons. Less common weather
+              impacts are from hurricanes and tornadoes/waterspouts. The summits of Mauna Loa, Mauna Kea,
+              and Haleakala can experience blizzards and snow during winter months. <br><br>
+
+              &nbsp &nbsp Hawai’is rainiest season is winter (October-April). The main source for rain annually is the
+              trade winds (easterly winds) interacting with the terrain, but winter storms can greatly enhance
+              overall annual rainfall. <br><br>
+
+              &nbsp &nbsp Rainfall and terrain have a direct affect on how slippery the trails are and whether or not
+              flash flooding is likely. While often sunny on the Leeward side of the island, the Windward
+              side consistently experiences rain showers and clouds. Unless hikers check on the weather
+              each day, it can be hard to know how the previous few days of weather will impact the hike
+              they plan to do. Many may be under the impression that the weather has been nice and sunny
+              with safe hiking conditions, then they get to the other side of the island to hike and the
+              trails and muddy and slippery. <br><br>
+
+              &nbsp &nbsp Just as checking the weather conditions will help you safely plan your hike, it can also be
+              used to plan and arrive at a waterfall during peak flow instead of being let down by a weak
+              trickle. <br><br>
+
+              &nbsp &nbsp Hikeit Hawai’i was designed with hiking safety in mind. It is here to help you plan a safe
+              trip and to find a flowing waterfall by tracking the weather to measure estimated trail muddiness and
+              waterfall flow. It also provides current weather and a 3-Day forecast enabling hikers to plan
+              before they go or a few days out. <br><br>
+
+              &nbsp &nbsp The homepage shows general weather relevant to all Hawai’ian Islands, National Weather Service
+              issued hazards, watches, warnings, and advisories (this is where flash flood information can be
+              found), and a current satellite loop to show what type of weather is on its way. <br><br>
+
+              &nbsp &nbsp Each island has its own unique climates, terrain, and weather patterns so it is important to
+              research the trails you plan on doing well in advance. Check specific islands forecasts and conditions by
+              navigating to your islands before you head out to find the latest weather impacts. <br><br>
+
+              &nbsp &nbsp We are constantly checking posts through social media and various other sources to verify the accuracy of
+              our information and appreciate any feedback! <br><br>
+
+            </p>
+            </div>
+            <br><center>
+            <ul class="nav nav-pills" style="font-size:20px";>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/oahu"><u>Oahu</u></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/kauai"><u>Kauai</u></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/maui"><u>Maui</u></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-white" href="/bigisland"><u>Big Island</u></a>
+              </li>
+            </ul>
+            </div>
+            <br><br>
+        </div>
+        <br>
+        </div><br><br>
+    </header>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

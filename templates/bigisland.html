@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172327056-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-172327056-1');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NFFZP78');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="HikeIt Hawaii Kauai provides Hiking Weather Forecasts, Current Weather Conditions,
+    Trail Muddiness predictions, and Waterfall Flow predictions for the numerous hiking locations on Kauai.
+    These locations include Waipio Valley, Rainbow Falls, Akaka Falls, Peepee Falls, Narnia Falls, Kilauea Volcano,
+    Mauna Loa and Mauna Kea Summits, and many more.">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/hikeithawaiilogo_favicon.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/hikeithawaiilogo_favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/hikeithawaiilogo_favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/hikeithawaiilogo_favicon.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/hikeithawaiilogo_favicon.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Sunrise/Sunset Icons -->
+  <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet">
+
+    {% if title %}
+        <title>Hikeit Hawaii - {{ title }}</title>
+    {% else %}
+        <title>Hikeit Hawaii</title>
+    {% endif %}
+</head>
+<body style="font-family:'Oswald', sans-serif;">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=UA-172327056-1"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Hikeit Hawaii</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="/oahu">Oahu</a>
+              <a class="nav-item nav-link" href="/kauai">Kauai</a>
+              <a class="nav-item nav-link" href="/maui">Maui</a>
+              <a class="nav-item nav-link" href="/bigisland">Big Island</a>
+              <a class="nav-item nav-link" href="/about">About</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <br>
+    <main class="container-fluid" style="background-image: url('/static/waipiovalley_cropped2.jpg');">
+        <div class="container-fluid">
+        <br>
+        <br>
+           <div class="container" style="min-height: 100px;"><center><img src="/static/hikeithawaiilogo.png"></div>
+                <div class="container" style="min-height: 25px;">
+                    <h5 style="color:white"><center>{{ summary }}<center></h5>
+                </div><br>
+
+                <div class="container" style="min-height: 50px;"><center>
+                  <a href="https://www.facebook.com/hikeithawaii" class="fa fa-facebook"
+                  style="background-color:#3B5998; color:white; padding:8px; font-size:35px; width:50px; text-align:text-bottom; text-decoration:none; border-radius: 50%;";>
+                </a>
+                <a href="https://www.instagram.com/hikeithawaii/" class="fa fa-instagram"
+                  style="background-color:#d6249f; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); color:white; padding:8px; font-size:35px; width:50px; text-align:center; text-decoration:none; border-radius: 50%;";>
+                </a>
+                </div><br>
+
+            <div class="article-metadata"><center>
+              <div class="btn-group">
+                <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Choose your Island...
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item nav-item nav-link" href="/oahu">Oahu</a>
+                  <a class="dropdown-item nav-item nav-link" href="/kauai">Kauai</a>
+                  <a class="dropdown-item nav-item nav-link" href="/maui">Maui</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item nav-item nav-link" href="/">Home</a>
+                  <a class="dropdown-item nav-item nav-link" href="/about">About</a>
+                </div>
+              </div>&nbsp
+
+              <button class="btn btn-secondary dropdown-toggle" data-toggle="collapse" href="#legend" role="button" aria-expanded="false" aria-controls="homedata">
+                Legend
+              </button>
+            </div>
+            <div class="collapse" id="legend">
+            <div class="alert alert-primary" role="alert" style="opacity:0.95">
+            <h6 style="color:green"><i><strong>*Weather and Conditions Legend</strong></i></h6>
+            <h4 style="color:green"><strong>Region Name</strong></h4>
+                <div class="article-metadata">
+                    <p style="color:darkblue">Current Weather Observation</p>
+                    <a style="color:darkblue"><span style='font-size:30px;'>&#x26C5;</span>&nbsp<strong>Weather</strong></a>&nbsp
+                    <a style="color:darkblue"><span style='font-size:30px;'>&#127777;</span>&nbsp<strong>Temperature</strong></a>
+                    <p style="color:darkblue"><span style='font-size:30px;'>&#127788;</span>&nbsp<strong>Wind</strong></p>
+                    <p>
+                      <a class="btn btn-info dropdown-toggle" data-toggle="collapse" href="#example" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        3-Day Forecast
+                      </a>
+                    </p>
+                    <div class="collapse" id="example">
+                      <div class="alert alert-primary" role="alert" style="opacity:0.95">
+                        <a style="color:darkblue"><b>Todays Weather Forecast</b></a>
+                        <hr>
+                        <a style="color:darkblue">Extended Weather Forecast</a>
+                      </div>
+                    </div>
+                </div>
+                    <div class="alert alert-primary" role="alert" style="opacity:0.95">
+                    <h5 style="color:green"><i><strong>Trail & Waterfall Conditions</strong></i></h5>
+                    <p>
+                      <a class="btn btn-secondary dropdown-toggle" data-toggle="collapse" href="#subexample" role="button" aria-expanded="false" aria-controls="button">
+                        Subregion Info
+                      </a>
+                    <div class="collapse" id="subexample">
+                        <a><i>Subregion Trails and Waterfalls</i></a>
+
+                        <p><span class="badge badge-pill badge-success">Check estimated Trail Muddiness</span></p>
+                        Mostly Dry = <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+                        Slightly Muddy = <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+                        Muddy = <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+                        Very Muddy = <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        <p><span class="badge badge-pill badge-primary">Check estimated Waterfall Flow Rate</span></p>
+                        Dry-Weak = <img src="/static/weak-trickle-icon.png" style="width:20px;height:35px;">&nbsp &nbsp</span></p>
+                        Weak-Light = <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+                        Light = <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+                        Light-Moderate = <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+                        Moderate = <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+                        Moderate-Strong = <img src="/static/half-icon.png" style="width:27px;height:42px;">&nbsp &nbsp</span></p>
+                        Strong = <img src="/static/full-icon.png" style="width:30px;height:45px;">&nbsp &nbsp</span></p>
+                    </div>
+                    </p>
+                </div>
+              </div>
+            </div>
+            <br><br>
+
+            <div class="article-metadata">
+                <h2 style="color:white"><strong>{{ island }}</strong></h2>
+
+                <div class="alert alert-primary" role="alert">
+                  <small><u>{{ 'Sunrise/Sunset: Hilo' }}</u></small><br>
+                <a style="color:darkblue;">
+                  <span style="text-align: center; font-size:20px; color:yellow;" class="iconify" data-icon="wi-sunrise" data-inline="false"></span>
+                  <strong>{{ sunrise }}</strong>
+                  <small><small> (Dawn: {{ dawn }}) </small></small>
+                </a>
+                <br>
+                <a>
+                  <span style="text-align: center; font-size:23px; color:orange;" class="iconify" data-icon="wi-sunset" data-inline="false"></span>
+                  <strong style="color:darkblue;">{{ sunset }}</strong>
+                  <small><small style="color:darkblue;"> (Dusk: {{ dusk }}) </small></small>
+                </a>
+                <br>
+
+                <small><u>{{ 'Sunrise/Sunset: Kona' }}</u></small><br>
+              <a style="color:darkblue;">
+                <span style="text-align: center; font-size:20px; color:yellow;" class="iconify" data-icon="wi-sunrise" data-inline="false"></span>
+                <strong>{{ sunrise1 }}</strong>
+                <small><small> (Dawn: {{ dawn1 }}) </small></small>
+              </a>
+                <br>
+                <a>
+                  <span style="text-align: center; font-size:23px; color:orange;" class="iconify" data-icon="wi-sunset" data-inline="false"></span>
+                  <strong style="color:darkblue;">{{ sunset1 }}</strong>
+                  <small><small style="color:darkblue;"> (Dusk: {{ dusk1 }}) </small></small>
+                </a>
+                <br>
+                <small><u>{{ 'Moon' }}</u></small><br>
+                &nbsp &nbsp &nbsp
+                <a style="color:darkblue; font-size:25px;">
+                {% if moon_phase == 'New Moon' %}
+                  <span>&#x1F311;</span>
+                {% elif moon_phase == 'Waxing Crescent' %}
+                  <span>&#x1F312;</span>
+                {% elif moon_phase == 'First Quarter' %}
+                  <span>&#x1F313;</span>
+                {% elif moon_phase == 'Waxing Gibbous' %}
+                  <span>&#x1F314;</span>
+                {% elif moon_phase == 'Full Moon' %}
+                  <span>&#x1F315;</span>
+                {% elif moon_phase == 'Waning Gibbous' %}
+                  <span>&#x1F316;</span>
+                {% elif moon_phase == 'Last Quarter' %}
+                  <span>&#x1F317;</span>
+                {% elif moon_phase == 'Waning Crescent' %}
+                  <span>&#x1F318;</span>
+                {% endif %}
+              </a><small><a style="color:darkblue;"> &nbsp{{ moon_phase }}</small></a>
+
+              </div>
+            </div>
+
+        <div class="alert alert-primary" role="alert">
+            <h4 style="color:green"><strong>{{ zone1 }}</strong></h4>
+                <div class="article-metadata">
+                    <a style="color:darkblue"><span style='font-size:30px;'>&#9925;</span>&nbsp<strong>{{ north_east_ob_wx }}</strong></a>&nbsp
+                    <a style="color:darkblue"><span style='font-size:30px;'>&#127777;</span>&nbsp<strong>{{ north_east_ob_temp }}</strong></a>
+                    <p style="color:darkblue"><span style='font-size:30px;'>&#127788;</span>&nbsp<strong>{{ north_east_ob_wind }}</strong></p>
+                    <p>
+                      <a class="btn btn-info" data-toggle="collapse" href="#zone1" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        3-Day Forecast
+                      </a>
+                    </p>
+                    <div class="collapse" id="zone1">
+                      <div class="alert alert-primary" role="alert">
+                        <p style="color:darkblue"><b>{{ zone1_fcst1 }}</b></p>
+                        <hr>
+                        <p style="color:darkblue">{{ zone1_fcst2 }}</p>
+                        <p style="color:darkblue">{{ zone1_fcst3 }}</p>
+                        <p style="color:darkblue">{{ zone1_fcst4 }}</p>
+                        <p style="color:darkblue">{{ zone1_fcst5 }}</p>
+                      </div>
+                    </div>
+                </div>
+                <div class="alert alert-primary" role="alert">
+                    <h5 style="color:green"><i><strong>Trail & Waterfall Conditions</strong></i></h5>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#waipio" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Waipio
+                      </a>
+                    </p>
+                    <div class="collapse" id="waipio">
+                        <a><i>{{ waipio_hikes1 }}</i></a>
+                        {% if waipio_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ waipio_mud1 }}&nbsp
+                          <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif waipio_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ waipio_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif waipio_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ waipio_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif waipio_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ waipio_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                          {% if waipio_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                            <p><span class="badge badge-pill badge-primary">{{ waipio_falls1 }}&nbsp
+                            <img src="/static/weak-trickle-icon.png" style="width:20px;height:35px;">&nbsp &nbsp</span></p>
+
+                          {% elif waipio_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ waipio_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif waipio_falls1 == 'Waterfalls Flowing: Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ waipio_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif waipio_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ waipio_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif waipio_falls1 == 'Waterfalls Flowing: Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ waipio_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif waipio_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ waipio_falls1 }}&nbsp
+                            <img src="/static/half-icon.png" style="width:27px;height:42px;">&nbsp &nbsp</span></p>
+
+                          {% elif waipio_falls1 == 'Waterfalls Flowing: Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ waipio_falls1 }}&nbsp
+                            <img src="/static/full-icon.png" style="width:30px;height:45px;">&nbsp &nbsp</span></p>
+
+                          {% endif %}
+
+                      </div>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#laupahoehoe" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Laupahoehoe
+                      </a>
+                    </p>
+                    <div class="collapse" id="laupahoehoe">
+                        <a><i>{{ laupahoehoe_hikes1 }}</i></a>
+                        {% if laupahoehoe_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ laupahoehoe_mud1 }}&nbsp
+                          <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif laupahoehoe_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ laupahoehoe_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif laupahoehoe_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ laupahoehoe_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif laupahoehoe_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ laupahoehoe_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                          {% if laupahoehoe_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                            <p><span class="badge badge-pill badge-primary">{{ laupahoehoe_falls1 }}&nbsp
+                            <img src="/static/weak-trickle-icon.png" style="width:20px;height:35px;">&nbsp &nbsp</span></p>
+
+                          {% elif laupahoehoe_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ laupahoehoe_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif laupahoehoe_falls1 == 'Waterfalls Flowing: Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ laupahoehoe_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif laupahoehoe_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ laupahoehoe_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif laupahoehoe_falls1 == 'Waterfalls Flowing: Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ laupahoehoe_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif laupahoehoe_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ laupahoehoe_falls1 }}&nbsp
+                            <img src="/static/half-icon.png" style="width:27px;height:42px;">&nbsp &nbsp</span></p>
+
+                          {% elif laupahoehoe_falls1 == 'Waterfalls Flowing: Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ laupahoehoe_falls1 }}&nbsp
+                            <img src="/static/full-icon.png" style="width:30px;height:45px;">&nbsp &nbsp</span></p>
+
+                          {% endif %}
+
+                      </div>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#hakalau" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Hakalau
+                      </a>
+                    </p>
+                    <div class="collapse" id="hakalau">
+                        <a><i>{{ hakalau_hikes1 }}</i></a>
+                        {% if hakalau_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ hakalau_mud1 }}&nbsp
+                          <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif hakalau_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ hakalau_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif hakalau_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ hakalau_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif hakalau_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ hakalau_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                          {% if hakalau_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hakalau_falls1 }}&nbsp
+                            <img src="/static/weak-trickle-icon.png" style="width:20px;height:35px;">&nbsp &nbsp</span></p>
+
+                          {% elif hakalau_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hakalau_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif hakalau_falls1 == 'Waterfalls Flowing: Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hakalau_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif hakalau_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hakalau_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif hakalau_falls1 == 'Waterfalls Flowing: Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hakalau_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif hakalau_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hakalau_falls1 }}&nbsp
+                            <img src="/static/half-icon.png" style="width:27px;height:42px;">&nbsp &nbsp</span></p>
+
+                          {% elif hakalau_falls1 == 'Waterfalls Flowing: Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hakalau_falls1 }}&nbsp
+                            <img src="/static/full-icon.png" style="width:30px;height:45px;">&nbsp &nbsp</span></p>
+
+                          {% endif %}
+
+                      </div>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#papaiku" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Papaiku
+                      </a>
+                    </p>
+                    <div class="collapse" id="papaiku">
+                        <a><i>{{ papaiku_hikes1 }}</i></a>
+                        {% if papaiku_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ papaiku_mud1 }}&nbsp
+                          <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif papaiku_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ papaiku_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif papaiku_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ papaiku_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif papaiku_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ papaiku_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                          {% if papaiku_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                            <p><span class="badge badge-pill badge-primary">{{ papaiku_falls1 }}&nbsp
+                            <img src="/static/weak-trickle-icon.png" style="width:20px;height:35px;">&nbsp &nbsp</span></p>
+
+                          {% elif papaiku_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ papaiku_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif papaiku_falls1 == 'Waterfalls Flowing: Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ papaiku_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif papaiku_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ papaiku_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif papaiku_falls1 == 'Waterfalls Flowing: Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ papaiku_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif papaiku_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ papaiku_falls1 }}&nbsp
+                            <img src="/static/half-icon.png" style="width:27px;height:42px;">&nbsp &nbsp</span></p>
+
+                          {% elif papaiku_falls1 == 'Waterfalls Flowing: Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ papaiku_falls1 }}&nbsp
+                            <img src="/static/full-icon.png" style="width:30px;height:45px;">&nbsp &nbsp</span></p>
+
+                          {% endif %}
+
+                      </div>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#hilo" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Hilo
+                      </a>
+                    </p>
+                    <div class="collapse" id="hilo">
+                        <a><i>{{ hilo_hikes1 }}</i></a>
+                        {% if hilo_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ hilo_mud1 }}&nbsp
+                          <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif hilo_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ hilo_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif hilo_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ hilo_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif hilo_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ hilo_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                          {% if hilo_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hilo_falls1 }}&nbsp
+                            <img src="/static/weak-trickle-icon.png" style="width:20px;height:35px;">&nbsp &nbsp</span></p>
+
+                          {% elif hilo_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hilo_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif hilo_falls1 == 'Waterfalls Flowing: Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hilo_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif hilo_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hilo_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif hilo_falls1 == 'Waterfalls Flowing: Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hilo_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif hilo_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hilo_falls1 }}&nbsp
+                            <img src="/static/half-icon.png" style="width:27px;height:42px;">&nbsp &nbsp</span></p>
+
+                          {% elif hilo_falls1 == 'Waterfalls Flowing: Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ hilo_falls1 }}&nbsp
+                            <img src="/static/full-icon.png" style="width:30px;height:45px;">&nbsp &nbsp</span></p>
+
+                          {% endif %}
+
+                      </div>
+                </div>
+            </div>
+
+        <div class="alert alert-primary" role="alert">
+            <h4 style="color:green"><strong>{{ zone2 }}</strong></h4>
+                <div class="article-metadata">
+                  <a style="color:darkblue"><span style='font-size:30px;'>&#9925;</span>&nbsp<strong>{{ north_east_ob_wx }}</strong></a>&nbsp
+                  <a style="color:darkblue"><span style='font-size:30px;'>&#127777;</span>&nbsp<strong>{{ north_east_ob_temp }}</strong></a>
+                  <p style="color:darkblue"><span style='font-size:30px;'>&#127788;</span>&nbsp<strong>{{ north_east_ob_wind }}</strong></p>
+                  <p>
+                      <a class="btn btn-info" data-toggle="collapse" href="#zone2" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        3-Day Forecast
+                      </a>
+                    </p>
+                    <div class="collapse" id="zone2">
+                    <div class="alert alert-primary" role="alert">
+                        <p style="color:darkblue"><b>{{ zone2_fcst1 }}</b></p>
+                        <hr>
+                        <p style="color:darkblue">{{ zone2_fcst2 }}</p>
+                        <p style="color:darkblue">{{ zone2_fcst3 }}</p>
+                        <p style="color:darkblue">{{ zone2_fcst4 }}</p>
+                        <p style="color:darkblue">{{ zone2_fcst5 }}</p>
+                      </div>
+                    </div>
+                </div>
+                <div class="alert alert-primary" role="alert">
+                    <h5 style="color:green"><i><strong>Trail & Waterfall Conditions</strong></i></h5>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#south" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        South Big Island
+                      </a>
+                    </p>
+                    <div class="collapse" id="south">
+                        <a><i>{{ south_hikes1 }}</i></a>
+                        {% if south_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ south_mud1 }}&nbsp
+                          <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif south_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ south_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif south_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ south_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif south_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ south_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                      </div>
+                    </div>
+                </div>
+
+        <div class="alert alert-primary" role="alert">
+            <h4 style="color:green"><strong>{{ zone3 }}</strong></h4>
+                <div class="article-metadata">
+                    <a style="color:darkblue"><span style='font-size:30px;'>&#9925;</span>&nbsp<strong>{{ summits_ob_wx }}</strong></a>&nbsp
+                    <a style="color:darkblue"><span style='font-size:30px;'>&#127777;</span>&nbsp<strong>{{ summits_ob_temp }}</strong></a>
+                    <p style="color:darkblue"><span style='font-size:30px;'>&#127788;</span>&nbsp<strong>{{ summits_ob_wind }}</strong></p>
+                    <p>
+                      <a class="btn btn-info" data-toggle="collapse" href="#zone3" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        3-Day Forecast
+                      </a>
+                    </p>
+                    <div class="collapse" id="zone3">
+                    <div class="alert alert-primary" role="alert">
+                        <p style="color:darkblue"><b>{{ zone3_fcst1 }}</b></p>
+                        <hr>
+                        <p style="color:darkblue">{{ zone3_fcst2 }}</p>
+                        <p style="color:darkblue">{{ zone3_fcst3 }}</p>
+                        <p style="color:darkblue">{{ zone3_fcst4 }}</p>
+                        <p style="color:darkblue">{{ zone3_fcst5 }}</p>
+                      </div>
+                    </div>
+                </div>
+                <div class="alert alert-primary" role="alert">
+                    <h5 style="color:green"><i><strong>Trail & Waterfall Conditions</strong></i></h5>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#mauna_loa" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Mauna Loa Summit
+                      </a>
+                    </p>
+                    <div class="collapse" id="mauna_loa">
+                        <a><i>{{ mauna_loa_hikes1 }}</i></a>
+                        {% if mauna_loa_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ mauna_loa_mud1 }}&nbsp
+                          <a><img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif mauna_loa_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ mauna_loa_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif mauna_loa_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ mauna_loa_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif mauna_loa_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ mauna_loa_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                      </div>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#mauna_kea" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Mauna Kea Summit
+                      </a>
+                    </p>
+                    <div class="collapse" id="mauna_kea">
+                        <a><i>{{ mauna_kea_hikes1 }}</i></a>
+                        {% if mauna_kea_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ mauna_kea_mud1 }}&nbsp
+                          <a><img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif mauna_kea_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ mauna_kea_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif mauna_kea_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ mauna_kea_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif mauna_kea_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ mauna_kea_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                      </div>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#leeward_mauna_kea" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Waihilau
+                      </a>
+                    </p>
+                    <div class="collapse" id="leeward_mauna_kea">
+                        <a><i>{{ leeward_mauna_kea_hikes1 }}</i></a>
+                        {% if leeward_mauna_kea_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ leeward_mauna_kea_mud1 }}&nbsp
+                          <a><img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif leeward_mauna_kea_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ leeward_mauna_kea_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif leeward_mauna_kea_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ leeward_mauna_kea_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif leeward_mauna_kea_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ leeward_mauna_kea_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                          {% if leeward_mauna_kea_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                            <p><span class="badge badge-pill badge-primary">{{ leeward_mauna_kea_falls1 }}&nbsp
+                            <img src="/static/weak-trickle-icon.png" style="width:20px;height:35px;">&nbsp &nbsp</span></p>
+
+                          {% elif leeward_mauna_kea_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ leeward_mauna_kea_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif leeward_mauna_kea_falls1 == 'Waterfalls Flowing: Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ leeward_mauna_kea_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif leeward_mauna_kea_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ leeward_mauna_kea_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif leeward_mauna_kea_falls1 == 'Waterfalls Flowing: Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ leeward_mauna_kea_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif leeward_mauna_kea_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ leeward_mauna_kea_falls1 }}&nbsp
+                            <img src="/static/half-icon.png" style="width:27px;height:42px;">&nbsp &nbsp</span></p>
+
+                          {% elif leeward_mauna_kea_falls1 == 'Waterfalls Flowing: Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ leeward_mauna_kea_falls1 }}&nbsp
+                            <img src="/static/full-icon.png" style="width:30px;height:45px;">&nbsp &nbsp</span></p>
+
+                          {% endif %}
+
+                      </div>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#pohakuloa" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Pohakuloa
+                      </a>
+                    </p>
+                    <div class="collapse" id="pohakuloa">
+                        <a><i>{{ pohakuloa_hikes1 }}</i></a>
+                        {% if pohakuloa_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ pohakuloa_mud1 }}&nbsp
+                          <a><img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif pohakuloa_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ pohakuloa_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif pohakuloa_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ pohakuloa_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif pohakuloa_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ pohakuloa_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                      </div>
+                    </div>
+                </div>
+
+        <div class="alert alert-primary" role="alert">
+            <h4 style="color:green"><strong>{{ zone4 }}</strong></h4>
+                <div class="article-metadata">
+                    <a style="color:darkblue"><span style='font-size:30px;'>&#9925;</span>&nbsp<strong>{{ kona_ob_wx }}</strong></a>&nbsp
+                    <a style="color:darkblue"><span style='font-size:30px;'>&#127777;</span>&nbsp<strong>{{ kona_ob_temp }}</strong></a>
+                    <p style="color:darkblue"><span style='font-size:30px;'>&#127788;</span>&nbsp<strong>{{ kona_ob_wind }}</strong></p>
+                    <p>
+                      <a class="btn btn-info" data-toggle="collapse" href="#zone4" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        3-Day Forecast
+                      </a>
+                    </p>
+                    <div class="collapse" id="zone4">
+                      <div class="alert alert-primary" role="alert">
+                        <p style="color:darkblue"><b>{{ zone4_fcst1 }}</b></p>
+                        <hr>
+                        <p style="color:darkblue">{{ zone4_fcst2 }}</p>
+                        <p style="color:darkblue">{{ zone4_fcst3 }}</p>
+                        <p style="color:darkblue">{{ zone4_fcst4 }}</p>
+                        <p style="color:darkblue">{{ zone4_fcst5 }}</p>
+                      </div>
+                    </div>
+                </div>
+                <div class="alert alert-primary" role="alert">
+                    <h5 style="color:green"><i><strong>Trail & Waterfall Conditions</strong></i></h5>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#kona" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Kona
+                      </a>
+                    </p>
+                    <div class="collapse" id="kona">
+                        <a><i>{{ kona_hikes1 }}</i></a>
+                        {% if kona_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ kona_mud1 }}&nbsp
+                          <a><img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif kona_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ kona_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif kona_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ kona_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif kona_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ kona_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                      </div>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#n_kona" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        North Kona
+                      </a>
+                    </p>
+                    <div class="collapse" id="n_kona">
+                        <a><i>{{ n_kona_hikes1 }}</i></a>
+                        {% if n_kona_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ n_kona_mud1 }}&nbsp
+                          <a><img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif n_kona_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ n_kona_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif n_kona_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ n_kona_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif n_kona_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ n_kona_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                      </div>
+                    </div>
+                </div>
+        <div class="alert alert-primary" role="alert">
+            <h4 style="color:green"><strong>{{ zone5 }}</strong></h4>
+                <div class="article-metadata">
+                  <a style="color:darkblue"><span style='font-size:30px;'>&#9925;</span>&nbsp<strong>{{ kona_ob_wx }}</strong></a>&nbsp
+                  <a style="color:darkblue"><span style='font-size:30px;'>&#127777;</span>&nbsp<strong>{{ kona_ob_temp }}</strong></a>
+                  <p style="color:darkblue"><span style='font-size:30px;'>&#127788;</span>&nbsp<strong>{{ kona_ob_wind }}</strong></p>
+                  <p>
+                      <a class="btn btn-info" data-toggle="collapse" href="#zone5" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        3-Day Forecast
+                      </a>
+                    </p>
+                    <div class="collapse" id="zone5">
+                      <div class="alert alert-primary" role="alert">
+                        <p style="color:darkblue"><b>{{ zone5_fcst1 }}</b></p>
+                        <hr>
+                        <p style="color:darkblue">{{ zone5_fcst2 }}</p>
+                        <p style="color:darkblue">{{ zone5_fcst3 }}</p>
+                        <p style="color:darkblue">{{ zone5_fcst4 }}</p>
+                        <p style="color:darkblue">{{ zone5_fcst5 }}</p>
+                      </div>
+                    </div>
+                </div>
+                <div class="alert alert-primary" role="alert">
+                    <h5 style="color:green"><i><strong>Trail & Waterfall Conditions</strong></i></h5>
+                    <p>
+                      <a class="btn btn-secondary" data-toggle="collapse" href="#kohala" role="button" aria-expanded="false" aria-controls="collapseExample">
+                        Kohala
+                      </a>
+                    </p>
+                    <div class="collapse" id="kohala">
+                        <a><i>{{ kohala_hikes1 }}</i></a>
+                        {% if kohala_mud1 == 'Conditions: Mostly Dry' %}
+                          <p><span class="badge badge-pill badge-success">{{ kohala_mud1 }}&nbsp
+                          <a><img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif kohala_mud1 == 'Conditions: Slightly Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ kohala_mud1 }}&nbsp
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif kohala_mud1 == 'Conditions: Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ kohala_mud1 }}&nbsp
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% elif kohala_mud1 == 'Conditions: Very Muddy' %}
+                          <p><span class="badge badge-pill badge-success">{{ kohala_mud1 }}&nbsp
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;">&nbsp &nbsp</span></p>
+
+                        {% endif %}
+
+                          {% if kohala_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                            <p><span class="badge badge-pill badge-primary">{{ kohala_falls1 }}&nbsp
+                            <img src="/static/weak-trickle-icon.png" style="width:20px;height:35px;">&nbsp &nbsp</span></p>
+
+                          {% elif kohala_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ kohala_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif kohala_falls1 == 'Waterfalls Flowing: Light' %}
+                            <p><span class="badge badge-pill badge-primary">{{ kohala_falls1 }}&nbsp
+                            <img src="/static/weak-icon.png" style="width:22px;height:37px;">&nbsp &nbsp</span></p>
+
+                          {% elif kohala_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ kohala_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif kohala_falls1 == 'Waterfalls Flowing: Moderate' %}
+                            <p><span class="badge badge-pill badge-primary">{{ kohala_falls1 }}&nbsp
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;">&nbsp &nbsp</span></p>
+
+                          {% elif kohala_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ kohala_falls1 }}&nbsp
+                            <img src="/static/half-icon.png" style="width:27px;height:42px;">&nbsp &nbsp</span></p>
+
+                          {% elif kohala_falls1 == 'Waterfalls Flowing: Strong' %}
+                            <p><span class="badge badge-pill badge-primary">{{ kohala_falls1 }}&nbsp
+                            <img src="/static/full-icon.png" style="width:30px;height:45px;">&nbsp &nbsp</span></p>
+
+                          {% endif %}
+
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: left;">
+                <img class="img-fluid" src="https://www.weather.gov/images/hfo/satellite/Hawaii_VIS_loop.gif" alt="https://www.weather.gov/images/hfo/satellite/Hawaii_VIS_loop.gif"; "Responsive image";>
+            </p>
+
+        </div><br><br>
+    </header>
+    </main>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>

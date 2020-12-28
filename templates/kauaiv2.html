@@ -1,0 +1,956 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172327056-1"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-172327056-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-172327056-1');
+    </script>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-NFFZP78');</script>
+    <!-- End Google Tag Manager -->
+
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="HikeIt Hawaii Kauai provides Hiking Weather Forecasts, Current Weather Conditions,
+    Trail Muddiness predictions, and Waterfall Flow predictions for the numerous hiking locations on Kauai.
+    If you're planning on hiking NaPali Coastline, Waimea Canyon, Mt. Waialeale, Wailua Falls, Manawaiopuna(Jurassic Park Falls),
+    Awa'awapuhi Trail, or many others, check here first to find out the latest conditions.">
+    <meta name="author" content="">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="57x57" href="/static/hikeithawaiilogo_favicon.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/static/hikeithawaiilogo_favicon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/hikeithawaiilogo_favicon.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/hikeithawaiilogo_favicon.png">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/static/hikeithawaiilogo_favicon.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <!-- Sunrise/Sunset Icons -->
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="album.css" rel="stylesheet">
+
+    <title>Hikeit Kauai</title>
+  </head>
+
+  <body style="font-family: -apple-system, BlinkMacSystemFont,
+    Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans,
+    Droid Sans, Helvetica Neue, sans-serif;">
+
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=UA-172327056-1"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <header class="site-header"><strong>
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">Hikeit Hawaii</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <a class="nav-item nav-link" href="/oahu">Oahu</a>
+              <a class="nav-item nav-link" href="/kauai">Kauai</a>
+              <a class="nav-item nav-link" href="/maui">Maui</a>
+              <a class="nav-item nav-link" href="/bigisland">Big Island</a>
+              <a class="nav-item nav-link" href="/about">About</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header></strong>
+
+    <main role="main" class="mt-4" style="background-image: url('/static/waipiovalley_cropped2.jpg');">
+
+      <section class="jumbotron text-center" style="background-image: url('/static/waipiovalley_cropped2.jpg');">
+        <div class="container">
+          <h1 class="jumbotron-heading"><center><img src="/static/hikeithawaiilogo.png"></h1>
+          <p class="lead" style="color:white"><i><strong>{{ summary }}</strong></i></p>
+          <div class="article-metadata"><center>
+
+            <div class="container" style="min-height: 50px;"><center>
+              <a href="https://www.facebook.com/hikeithawaii" class="fa fa-facebook"
+              style="background-color:#3B5998; color:white; padding:8px; font-size:35px; width:50px; text-align:text-bottom; text-decoration:none; border-radius: 50%;";>
+            </a>
+            <a href="https://www.instagram.com/hikeithawaii/" class="fa fa-instagram"
+              style="background-color:#d6249f; background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); color:white; padding:8px; font-size:35px; width:50px; text-align:center; text-decoration:none; border-radius: 50%;";>
+            </a>
+            </div><br>
+
+              <!-- Button group -->
+              <div class="btn-group">
+                <button type="button" class="btn btn-secondary btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Choose your Island...
+                </button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item nav-item nav-link" href="/oahu">Oahu</a>
+                  <a class="dropdown-item nav-item nav-link" href="/maui">Maui</a>
+                  <a class="dropdown-item nav-item nav-link" href="/bigisland">Big Island</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item nav-item nav-link" href="/">Home</a>
+                  <a class="dropdown-item nav-item nav-link" href="/about">About</a>
+                </div>
+
+              </div>
+              <!-- End Button group -->
+            </div>
+        </div>
+      </section>
+
+      <h2 class="text-left ps-1 text-white"; style="font-size:50px";><strong>{{ island }}</strong></h2>
+
+        <div class="row mb-2 bg-steel text-white">
+          <div class="container ps-5">
+            <small><u>{{ 'Sunrise/Sunset: Lihue' }}</u></small><br>
+            <div class="row">
+              <div class="col-sm">
+                <span style="text-align: center; font-size:20px; color:yellow;" class="iconify" data-icon="wi-sunrise" data-inline="false"></span>
+                <strong>{{ sunrise }}</strong>
+                <small><small> (Dawn: {{ dawn }}) </small></small>
+              </div>
+              <div class="col-sm">
+                <span style="text-align: center; font-size:23px; color:orange;" class="iconify" data-icon="wi-sunset" data-inline="false"></span>
+                <strong>{{ sunset }}</strong>
+                <small><small> (Dusk: {{ dusk }}) </small></small>
+              </div>
+              <div class="col-sm">
+                <a style="color:white; font-size:25px;">
+                {% if moon_phase == 'New Moon' %}
+                  <span>&#x1F311;</span>
+                {% elif moon_phase == 'Waxing Crescent' %}
+                  <span>&#x1F312;</span>
+                {% elif moon_phase == 'First Quarter' %}
+                  <span>&#x1F313;</span>
+                {% elif moon_phase == 'Waxing Gibbous' %}
+                  <span>&#x1F314;</span>
+                {% elif moon_phase == 'Full Moon' %}
+                  <span>&#x1F315;</span>
+                {% elif moon_phase == 'Waning Gibbous' %}
+                  <span>&#x1F316;</span>
+                {% elif moon_phase == 'Last Quarter' %}
+                  <span>&#x1F317;</span>
+                {% elif moon_phase == 'Waning Crescent' %}
+                  <span>&#x1F318;</span>
+                {% endif %}
+              </a><small><a> &nbsp{{ moon_phase }}</small></a>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-deck row p-4">
+          <!-- Card 1 -->
+          <div class="card p-2" style="background-color:#E0F2F1">
+            <div class="card-body-top">
+                <h4 class="card-title" style="color:green"><strong>{{ zone1 }}</strong></h4>
+                <br>
+                <p class="card-text ps-2"><strong>
+                  <span style="font-size:30px;">
+                    {% if windward_ob_wx == 'Clear' %}
+                      <span>&#x1F324;</span>
+                    {% elif windward_ob_wx == 'Clear and Breezy' %}
+                      <span>&#x1F324;</span>
+                    {% elif windward_ob_wx == 'Clear and Windy' %}
+                      <span>&#x1F324;</span>
+                    {% elif windward_ob_wx == 'Fair' %}
+                      <span>&#x1F324;</span>
+                    {% elif windward_ob_wx == 'Fair and Breezy' %}
+                      <span>&#x1F324;</span>
+                    {% elif windward_ob_wx == 'Fair and Windy' %}
+                      <span>&#x1F324;</span>
+                    {% elif windward_ob_wx == 'A Few Clouds' %}
+                      <span>&#x1F324;</span>
+                    {% elif windward_ob_wx == 'A Few Clouds and Breezy' %}
+                      <span>&#x1F324;</span>
+                    {% elif windward_ob_wx == 'A Few Clouds and Windy' %}
+                      <span>&#x1F324;</span>
+                    {% elif windward_ob_wx == 'Partly Cloudy' %}
+                      <span>&#x26C5;</span>
+                    {% elif windward_ob_wx == 'Partly Cloudy and Breezy' %}
+                      <span>&#x26C5;</span>
+                    {% elif windward_ob_wx == 'Partly Cloudy and Windy' %}
+                      <span>&#x26C5;</span>
+                    {% elif windward_ob_wx == 'Mostly Cloudy' %}
+                      <span>&#x1F325;</span>
+                    {% elif windward_ob_wx == 'Mostly Cloudy and Breezy' %}
+                      <span>&#x1F325;</span>
+                    {% elif windward_ob_wx == 'Mostly Cloudy and Windy' %}
+                      <span>&#x1F325;</span>
+                    {% elif windward_ob_wx == 'Overcast' %}
+                      <span>&#x1F325;</span>
+                    {% elif windward_ob_wx == 'Overcast with Haze' %}
+                      <span>&#x1F325;</span>
+                    {% elif windward_ob_wx == 'Light Drizzle' %}
+                      <span>&#x1F326;</span>
+                    {% elif windward_ob_wx == 'Drizzle' %}
+                      <span>&#x1F326;</span>
+                    {% elif windward_ob_wx == 'Light Rain' %}
+                      <span>&#x1F326;</span>
+                    {% elif windward_ob_wx == 'Light Rain and Breezy' %}
+                      <span>&#x1F326;</span>
+                    {% elif windward_ob_wx == 'Light Rain and Windy' %}
+                      <span>&#x1F326;</span>
+                    {% elif windward_ob_wx == 'Light Rain Fog/Mist' %}
+                      <span>&#x1F326;</span>
+                    {% elif windward_ob_wx == 'Rain Fog/Mist' %}
+                      <span>&#x1F327;</span>
+                    {% elif windward_ob_wx == 'Rain' %}
+                      <span>&#x1F327;</span>
+                    {% elif windward_ob_wx == 'Rain Showers' %}
+                      <span>&#x1F326;</span>
+                    {% elif windward_ob_wx == 'Heavy Rain' %}
+                      <span>&#x1F327;</span>
+                    {% elif windward_ob_wx == 'Heavy Rain Fog/Mist' %}
+                      <span>&#x1F327;</span>
+                    {% elif windward_ob_wx == 'Thunderstorms' %}
+                      <span>&#x26C8;</span>
+                    {% else %}
+                      <span>&#x26C5;</span>
+                    {% endif %}
+                  </span>
+
+                  <a style="color:darkblue;">
+                    <span>&nbsp{{ windward_ob_wx }}</span>
+                    <span style="font-size:30px;">&#127777;</span>&nbsp{{ windward_ob_temp }}
+                    <span style="font-size:30px;">&#127788;</span>&nbsp{{ windward_ob_wind }}
+                  </a>
+                </strong></p>
+
+              <!-- 3-Day Forecast -->
+              <div class="accordion" id="accordion0">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading0">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse0" aria-expanded="true" aria-controls="collapse0">
+                      3-Day Forecast
+                    </button>
+                  </h2>
+                  <div id="collapse0" class="accordion-collapse collapse" aria-labelledby="heading0" data-bs-parent="#accordion0">
+                    <div class="accordion-body" style="color:darkblue; font-size:15px;">
+                        <p><b>{{ zone1_fcst1 }}</b></p>
+                        <hr>
+                        <p>{{ zone1_fcst2 }}</p>
+                        <p>{{ zone1_fcst3 }}</p>
+                        <p>{{ zone1_fcst4 }}</p>
+                        <p>{{ zone1_fcst5 }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- End 3-Day Forecast -->
+            <hr>
+          <!-- Trail and Waterfall Conditions -->
+            <h5 style="color:green"><center><i><strong>Trail & Waterfall Conditions</strong></i></center></h5>
+
+            <div class="accordion" id="accordion1">
+
+              <!-- Start accordian item1-->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading1">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse1" aria-expanded="true" aria-controls="collapse1">
+                    Northwest
+                  </button>
+                </h2>
+                <div id="collapse1" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordion1">
+                  <div class="accordion-body" style="color:darkblue; font-size:15px;">
+
+                    <!-- Hiking Trails -->
+                      <ul class="list-inline"><strong>
+                        <li class="list-inline-item">~ Koke'e ~</li>
+                        <li class="list-inline-item">~ Na Pali Kona ~</li>
+                        <li class="list-inline-item">~ Waimea Canyon ~</li>
+                      </ul></strong>
+
+                      <p><span class="badge badge-pill badge-success">{{ nw_kauai_mud1 }}&nbsp
+                        &nbsp &nbsp
+                        {% if nw_kauai_mud1 == 'Conditions: Mostly Dry' %}
+                          <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif nw_kauai_mud1 == 'Conditions: Slightly Muddy' %}
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif nw_kauai_mud1 == 'Conditions: Muddy' %}
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif nw_kauai_mud1 == 'Conditions: Very Muddy' %}
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% endif %}
+
+                      <p><span class="badge badge-pill badge-primary">{{ nw_kauai_falls1 }}&nbsp
+                        &nbsp &nbsp
+                        {% if nw_kauai_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                          <img src="/static/weak-trickle-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif nw_kauai_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                          <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif nw_kauai_falls1 == 'Waterfalls Flowing: Light' %}
+                          <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif nw_kauai_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                          <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif nw_kauai_falls1 == 'Waterfalls Flowing: Moderate' %}
+                          <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif nw_kauai_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                          <img src="/static/half-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif nw_kauai_falls1 == 'Waterfalls Flowing: Strong' %}
+                          <img src="/static/full-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% endif %}
+
+                        <hr>
+
+                  </div>
+                </div>
+              </div>
+              <!-- End accordian item1-->
+
+              <!-- Start accordian item2-->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading2">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="true" aria-controls="collapse2">
+                    North
+                  </button>
+                </h2>
+                <div id="collapse2" class="accordion-collapse collapse" aria-labelledby="heading2" data-bs-parent="#accordion2">
+                  <div class="accordion-body" style="color:darkblue; font-size:15px;">
+
+                    <!-- Hiking Trails -->
+                      <ul class="list-inline"><strong>
+                        <li class="list-inline-item">~ Na Pali ~</li>
+                      </ul></strong>
+
+                      <p><span class="badge badge-pill badge-success">{{ n_kauai_mud1 }}&nbsp
+                        &nbsp &nbsp
+                        {% if n_kauai_mud1 == 'Conditions: Mostly Dry' %}
+                          <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif n_kauai_mud1 == 'Conditions: Slightly Muddy' %}
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif n_kauai_mud1 == 'Conditions: Muddy' %}
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif n_kauai_mud1 == 'Conditions: Very Muddy' %}
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% endif %}
+
+                      <p><span class="badge badge-pill badge-primary">{{ n_kauai_falls1 }}&nbsp
+                        &nbsp &nbsp
+                        {% if n_kauai_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                          <img src="/static/weak-trickle-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif n_kauai_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                          <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif n_kauai_falls1 == 'Waterfalls Flowing: Light' %}
+                          <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif n_kauai_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                          <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif n_kauai_falls1 == 'Waterfalls Flowing: Moderate' %}
+                          <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif n_kauai_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                          <img src="/static/half-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif n_kauai_falls1 == 'Waterfalls Flowing: Strong' %}
+                          <img src="/static/full-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% endif %}
+
+                        <hr>
+
+                  </div>
+                </div>
+              </div>
+              <!-- End accordian item2-->
+
+              <!-- Start accordian item3-->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading3">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse3" aria-expanded="true" aria-controls="collapse3">
+                    Northeast
+                  </button>
+                </h2>
+                <div id="collapse3" class="accordion-collapse collapse" aria-labelledby="heading3" data-bs-parent="#accordion3">
+                  <div class="accordion-body" style="color:darkblue; font-size:15px;">
+
+                    <!-- Hiking Trails -->
+                      <ul class="list-inline"><strong>
+                        <li class="list-inline-item">~ Okolehao ~</li>
+                        <li class="list-inline-item">~ Princeville Botanical Garden ~</li>
+                        <li class="list-inline-item">~ Wai Koa Loop ~</li>
+                        <li class="list-inline-item">~ Kilauea Falls ~</li>
+                        <li class="list-inline-item">~ Kauapea ~</li>
+                        <li class="list-inline-item">~ Na Aina Kai Botanical Gardens ~</li>
+                      </ul></strong>
+
+                      <p><span class="badge badge-pill badge-success">{{ ne_kauai_mud1 }}&nbsp
+                        &nbsp &nbsp
+                        {% if ne_kauai_mud1 == 'Conditions: Mostly Dry' %}
+                          <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif ne_kauai_mud1 == 'Conditions: Slightly Muddy' %}
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif ne_kauai_mud1 == 'Conditions: Muddy' %}
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif ne_kauai_mud1 == 'Conditions: Very Muddy' %}
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% endif %}
+
+                      <p><span class="badge badge-pill badge-primary">{{ ne_kauai_falls1 }}&nbsp
+                        &nbsp &nbsp
+                        {% if ne_kauai_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                          <img src="/static/weak-trickle-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif ne_kauai_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                          <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif ne_kauai_falls1 == 'Waterfalls Flowing: Light' %}
+                          <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif ne_kauai_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                          <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif ne_kauai_falls1 == 'Waterfalls Flowing: Moderate' %}
+                          <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif ne_kauai_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                          <img src="/static/half-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif ne_kauai_falls1 == 'Waterfalls Flowing: Strong' %}
+                          <img src="/static/full-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% endif %}
+
+                        <hr>
+
+                        <!-- Hiking Trails -->
+                          <ul class="list-inline"><strong>
+                            <li class="list-inline-item">~ Opae Falls ~</li>
+                          </ul></strong>
+
+                        <p><span class="badge badge-pill badge-success">{{ moloaa_mud1 }}&nbsp
+                          &nbsp &nbsp
+                          {% if moloaa_mud1 == 'Conditions: Mostly Dry' %}
+                            <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;"></p></span>
+                          {% elif moloaa_mud1 == 'Conditions: Slightly Muddy' %}
+                            <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                          {% elif moloaa_mud1 == 'Conditions: Muddy' %}
+                            <img src="/static/muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                          {% elif moloaa_mud1 == 'Conditions: Very Muddy' %}
+                            <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                          {% endif %}
+
+                        <p><span class="badge badge-pill badge-primary">{{ moloaa_falls1 }}&nbsp
+                          &nbsp &nbsp
+                          {% if moloaa_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                            <img src="/static/weak-trickle-icon.png" style="width:25px;height:40px;"></p></span>
+                          {% elif moloaa_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                            <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                          {% elif moloaa_falls1 == 'Waterfalls Flowing: Light' %}
+                            <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                          {% elif moloaa_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                          {% elif moloaa_falls1 == 'Waterfalls Flowing: Moderate' %}
+                            <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                          {% elif moloaa_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                            <img src="/static/half-icon.png" style="width:25px;height:40px;"></p></span>
+                          {% elif moloaa_falls1 == 'Waterfalls Flowing: Strong' %}
+                            <img src="/static/full-icon.png" style="width:25px;height:40px;"></p></span>
+                          {% endif %}
+
+                  </div>
+                </div>
+              </div>
+              <!-- End accordian item3-->
+
+              <!-- Start accordian item4-->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading4">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="true" aria-controls="collapse4">
+                    East
+                  </button>
+                </h2>
+                <div id="collapse4" class="accordion-collapse collapse" aria-labelledby="heading4" data-bs-parent="#accordion4">
+                  <div class="accordion-body" style="color:darkblue; font-size:15px;">
+
+                    <!-- Hiking Trails -->
+                      <ul class="list-inline"><strong>
+                        <li class="list-inline-item">~ Wailua ~</li>
+                        <li class="list-inline-item">~ Sleeping Giant ~</li>
+                        <li class="list-inline-item">~ Kaholalele ~</li>
+                        <li class="list-inline-item">~ Hoopii ~</li>
+                        <li class="list-inline-item">~ Makaleha ~</li>
+                        <li class="list-inline-item">~ Kapakaiki ~</li>
+                      </ul></strong>
+
+                      <p><span class="badge badge-pill badge-success">{{ wailua_mud1 }}&nbsp
+                        &nbsp &nbsp
+                        {% if wailua_mud1 == 'Conditions: Mostly Dry' %}
+                          <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif wailua_mud1 == 'Conditions: Slightly Muddy' %}
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif wailua_mud1 == 'Conditions: Muddy' %}
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif wailua_mud1 == 'Conditions: Very Muddy' %}
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% endif %}
+
+                      <p><span class="badge badge-pill badge-primary">{{ wailua_falls1 }}&nbsp
+                        &nbsp &nbsp
+                        {% if wailua_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                          <img src="/static/weak-trickle-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif wailua_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                          <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif wailua_falls1 == 'Waterfalls Flowing: Light' %}
+                          <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif wailua_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                          <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif wailua_falls1 == 'Waterfalls Flowing: Moderate' %}
+                          <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif wailua_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                          <img src="/static/half-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif wailua_falls1 == 'Waterfalls Flowing: Strong' %}
+                          <img src="/static/full-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% endif %}
+
+                        <hr>
+
+                  </div>
+                </div>
+              </div>
+              <!-- End accordian item4-->
+
+            </div> <!-- End Accordian -->
+
+          </div> <!-- End Card 1 -->
+
+
+         <!-- Card 2 -->
+         <div class="card p-2" style="background-color:#E0F2F1">
+           <div class="card-body-top">
+               <h4 class="card-title" style="color:green"><strong>{{ zone2 }}</strong></h4>
+               <br>
+               <p class="card-text ps-2"><strong>
+                 <span style="font-size:30px;">
+                   {% if windward_ob_wx == 'Clear' %}
+                     <span>&#x1F324;</span>
+                   {% elif windward_ob_wx == 'Clear and Breezy' %}
+                     <span>&#x1F324;</span>
+                   {% elif windward_ob_wx == 'Clear and Windy' %}
+                     <span>&#x1F324;</span>
+                   {% elif windward_ob_wx == 'Fair' %}
+                     <span>&#x1F324;</span>
+                   {% elif windward_ob_wx == 'Fair and Breezy' %}
+                     <span>&#x1F324;</span>
+                   {% elif windward_ob_wx == 'Fair and Windy' %}
+                     <span>&#x1F324;</span>
+                   {% elif windward_ob_wx == 'A Few Clouds' %}
+                     <span>&#x1F324;</span>
+                   {% elif windward_ob_wx == 'A Few Clouds and Breezy' %}
+                     <span>&#x1F324;</span>
+                   {% elif windward_ob_wx == 'A Few Clouds and Windy' %}
+                     <span>&#x1F324;</span>
+                   {% elif windward_ob_wx == 'Partly Cloudy' %}
+                     <span>&#x26C5;</span>
+                   {% elif windward_ob_wx == 'Partly Cloudy and Breezy' %}
+                     <span>&#x26C5;</span>
+                   {% elif windward_ob_wx == 'Partly Cloudy and Windy' %}
+                     <span>&#x26C5;</span>
+                   {% elif windward_ob_wx == 'Mostly Cloudy' %}
+                     <span>&#x1F325;</span>
+                   {% elif windward_ob_wx == 'Mostly Cloudy and Breezy' %}
+                     <span>&#x1F325;</span>
+                   {% elif windward_ob_wx == 'Mostly Cloudy and Windy' %}
+                     <span>&#x1F325;</span>
+                   {% elif windward_ob_wx == 'Overcast' %}
+                     <span>&#x1F325;</span>
+                   {% elif windward_ob_wx == 'Overcast with Haze' %}
+                     <span>&#x1F325;</span>
+                   {% elif windward_ob_wx == 'Light Drizzle' %}
+                     <span>&#x1F326;</span>
+                   {% elif windward_ob_wx == 'Drizzle' %}
+                     <span>&#x1F326;</span>
+                   {% elif windward_ob_wx == 'Light Rain' %}
+                     <span>&#x1F326;</span>
+                   {% elif windward_ob_wx == 'Light Rain and Breezy' %}
+                     <span>&#x1F326;</span>
+                   {% elif windward_ob_wx == 'Light Rain and Windy' %}
+                     <span>&#x1F326;</span>
+                   {% elif windward_ob_wx == 'Light Rain Fog/Mist' %}
+                     <span>&#x1F326;</span>
+                   {% elif windward_ob_wx == 'Rain Fog/Mist' %}
+                     <span>&#x1F327;</span>
+                   {% elif windward_ob_wx == 'Rain' %}
+                     <span>&#x1F327;</span>
+                   {% elif windward_ob_wx == 'Rain Showers' %}
+                     <span>&#x1F326;</span>
+                   {% elif windward_ob_wx == 'Heavy Rain' %}
+                     <span>&#x1F327;</span>
+                   {% elif windward_ob_wx == 'Heavy Rain Fog/Mist' %}
+                     <span>&#x1F327;</span>
+                   {% elif windward_ob_wx == 'Thunderstorms' %}
+                     <span>&#x26C8;</span>
+                   {% else %}
+                     <span>&#x26C5;</span>
+                   {% endif %}
+                 </span>
+
+                 <a style="color:darkblue;">
+                   <span>&nbsp{{ windward_ob_wx }}</span>
+                   <span style="font-size:30px;">&#127777;</span>&nbsp{{ windward_ob_temp }}
+                   <span style="font-size:30px;">&#127788;</span>&nbsp{{ windward_ob_wind }}
+                 </a>
+               </strong></p>
+
+             <!-- 3-Day Forecast -->
+             <div class="accordion" id="accordion10">
+               <div class="accordion-item">
+                 <h2 class="accordion-header" id="heading10">
+                   <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse10" aria-expanded="true" aria-controls="collapse10">
+                     3-Day Forecast
+                   </button>
+                 </h2>
+                 <div id="collapse10" class="accordion-collapse collapse" aria-labelledby="heading10" data-bs-parent="#accordion10">
+                   <div class="accordion-body" style="color:darkblue; font-size:15px;">
+                       <p><b>{{ zone2_fcst1 }}</b></p>
+                       <hr>
+                       <p>{{ zone2_fcst2 }}</p>
+                       <p>{{ zone2_fcst3 }}</p>
+                       <p>{{ zone2_fcst4 }}</p>
+                       <p>{{ zone2_fcst5 }}</p>
+                   </div>
+                 </div>
+               </div>
+             </div>
+           </div>
+         <!-- End 3-Day Forecast -->
+           <hr>
+         <!-- Trail and Waterfall Conditions -->
+           <h5 style="color:green"><center><i><strong>Trail & Waterfall Conditions</strong></i></center></h5>
+
+           <div class="accordion" id="accordion11">
+
+             <!-- Start accordian item1-->
+             <div class="accordion-item">
+               <h2 class="accordion-header" id="heading11">
+                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse11" aria-expanded="true" aria-controls="collapse11">
+                   Central
+                 </button>
+               </h2>
+               <div id="collapse11" class="accordion-collapse collapse" aria-labelledby="heading1" data-bs-parent="#accordion11">
+                 <div class="accordion-body" style="color:darkblue; font-size:15px;">
+
+                   <!-- Hiking Trails -->
+                     <ul class="list-inline"><strong>
+                       <li class="list-inline-item">~ Mt. Waialeale ~</li>
+                       <li class="list-inline-item">~ Hinalele ~</li>
+                       <li class="list-inline-item">~ Puwainui ~</li>
+                       <li class="list-inline-item">~ Waianuenue ~</li>
+                       <li class="list-inline-item">~ Kahili ~</li>
+                       <li class="list-inline-item">~ Hali'i ~</li>
+                       <li class="list-inline-item">~ Manawaiopuna (Jurassic Park Falls) ~</li>
+                     </ul></strong>
+
+                     <p><span class="badge badge-pill badge-success">{{ central_mud1 }}&nbsp
+                       &nbsp &nbsp
+                       {% if central_mud1 == 'Conditions: Mostly Dry' %}
+                         <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;"></p></span>
+                       {% elif central_mud1 == 'Conditions: Slightly Muddy' %}
+                         <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                       {% elif central_mud1 == 'Conditions: Muddy' %}
+                         <img src="/static/muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                       {% elif central_mud1 == 'Conditions: Very Muddy' %}
+                         <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                       {% endif %}
+
+                     <p><span class="badge badge-pill badge-primary">{{ central_falls1 }}&nbsp
+                       &nbsp &nbsp
+                       {% if central_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                         <img src="/static/weak-trickle-icon.png" style="width:25px;height:40px;"></p></span>
+                       {% elif central_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                         <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                       {% elif central_falls1 == 'Waterfalls Flowing: Light' %}
+                         <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                       {% elif central_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                         <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                       {% elif central_falls1 == 'Waterfalls Flowing: Moderate' %}
+                         <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                       {% elif central_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                         <img src="/static/half-icon.png" style="width:25px;height:40px;"></p></span>
+                       {% elif central_falls1 == 'Waterfalls Flowing: Strong' %}
+                         <img src="/static/full-icon.png" style="width:25px;height:40px;"></p></span>
+                       {% endif %}
+
+                       <hr>
+
+                 </div>
+               </div>
+             </div>
+             <!-- End accordian item1-->
+
+             <!-- Start accordian item2-->
+             <div class="accordion-item">
+               <h2 class="accordion-header" id="heading12">
+                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse12" aria-expanded="true" aria-controls="collapse12">
+                   South
+                 </button>
+               </h2>
+               <div id="collapse12" class="accordion-collapse collapse" aria-labelledby="heading12" data-bs-parent="#accordion12">
+                 <div class="accordion-body" style="color:darkblue; font-size:15px;">
+
+                   <!-- Hiking Trails -->
+                     <ul class="list-inline"><strong>
+                       <li class="list-inline-item">~ Ooiki ~</li>
+                       <li class="list-inline-item">~ Kaukiuki ~</li>
+                       <li class="list-inline-item">~ Waiolue ~</li>
+                     </ul></strong>
+
+                     <p><span class="badge badge-pill badge-success">{{ s_kauai_mud1 }}&nbsp
+                       &nbsp &nbsp
+                       {% if s_kauai_mud1 == 'Conditions: Mostly Dry' %}
+                         <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;"></p></span>
+                       {% elif s_kauai_mud1 == 'Conditions: Slightly Muddy' %}
+                         <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                       {% elif s_kauai_mud1 == 'Conditions: Muddy' %}
+                         <img src="/static/muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                       {% elif s_kauai_mud1 == 'Conditions: Very Muddy' %}
+                         <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                       {% endif %}
+
+                       <p><span class="badge badge-pill badge-primary">{{ s_kauai_falls1 }}&nbsp
+                         &nbsp &nbsp
+                         {% if s_kauai_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                           <img src="/static/weak-trickle-icon.png" style="width:25px;height:40px;"></p></span>
+                         {% elif s_kauai_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                           <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                         {% elif s_kauai_falls1 == 'Waterfalls Flowing: Light' %}
+                           <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                         {% elif s_kauai_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                           <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                         {% elif s_kauai_falls1 == 'Waterfalls Flowing: Moderate' %}
+                           <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                         {% elif s_kauai_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                           <img src="/static/half-icon.png" style="width:25px;height:40px;"></p></span>
+                         {% elif s_kauai_falls1 == 'Waterfalls Flowing: Strong' %}
+                           <img src="/static/full-icon.png" style="width:25px;height:40px;"></p></span>
+                         {% endif %}
+
+                 </div>
+               </div>
+             </div>
+             <!-- End accordian item2-->
+
+           </div> <!-- End Accordian -->
+
+         </div> <!-- End Card 2 -->
+
+          <!-- Card 3 -->
+          <div class="card p-2" style="background-color:#E0F2F1">
+            <div class="card-body-top">
+                <h4 class="card-title" style="color:green"><strong>{{ zone3 }}</strong></h4>
+                <br>
+                <p class="card-text ps-2"><strong>
+                  <span style="font-size:30px;">
+                    {% if leeward_ob_wx == 'Clear' %}
+                      <span>&#x1F324;</span>
+                    {% elif leeward_ob_wx == 'Clear and Breezy' %}
+                      <span>&#x1F324;</span>
+                    {% elif leeward_ob_wx == 'Clear and Windy' %}
+                      <span>&#x1F324;</span>
+                    {% elif leeward_ob_wx == 'Fair' %}
+                      <span>&#x1F324;</span>
+                    {% elif leeward_ob_wx == 'Fair and Breezy' %}
+                      <span>&#x1F324;</span>
+                    {% elif leeward_ob_wx == 'Fair and Windy' %}
+                      <span>&#x1F324;</span>
+                    {% elif leeward_ob_wx == 'A Few Clouds' %}
+                      <span>&#x1F324;</span>
+                    {% elif leeward_ob_wx == 'A Few Clouds and Breezy' %}
+                      <span>&#x1F324;</span>
+                    {% elif leeward_ob_wx == 'A Few Clouds and Windy' %}
+                      <span>&#x1F324;</span>
+                    {% elif leeward_ob_wx == 'Partly Cloudy' %}
+                      <span>&#x26C5;</span>
+                    {% elif leeward_ob_wx == 'Partly Cloudy and Breezy' %}
+                      <span>&#x26C5;</span>
+                    {% elif leeward_ob_wx == 'Partly Cloudy and Windy' %}
+                      <span>&#x26C5;</span>
+                    {% elif leeward_ob_wx == 'Mostly Cloudy' %}
+                      <span>&#x1F325;</span>
+                    {% elif leeward_ob_wx == 'Mostly Cloudy and Breezy' %}
+                      <span>&#x1F325;</span>
+                    {% elif leeward_ob_wx == 'Mostly Cloudy and Windy' %}
+                      <span>&#x1F325;</span>
+                    {% elif leeward_ob_wx == 'Overcast' %}
+                      <span>&#x1F325;</span>
+                    {% elif leeward_ob_wx == 'Overcast with Haze' %}
+                      <span>&#x1F325;</span>
+                    {% elif leeward_ob_wx == 'Light Drizzle' %}
+                      <span>&#x1F326;</span>
+                    {% elif leeward_ob_wx == 'Drizzle' %}
+                      <span>&#x1F326;</span>
+                    {% elif leeward_ob_wx == 'Light Rain' %}
+                      <span>&#x1F326;</span>
+                    {% elif leeward_ob_wx == 'Light Rain and Breezy' %}
+                      <span>&#x1F326;</span>
+                    {% elif leeward_ob_wx == 'Light Rain and Windy' %}
+                      <span>&#x1F326;</span>
+                    {% elif leeward_ob_wx == 'Light Rain Fog/Mist' %}
+                      <span>&#x1F326;</span>
+                    {% elif leeward_ob_wx == 'Rain Fog/Mist' %}
+                      <span>&#x1F327;</span>
+                    {% elif leeward_ob_wx == 'Rain' %}
+                      <span>&#x1F327;</span>
+                    {% elif leeward_ob_wx == 'Rain Showers' %}
+                      <span>&#x1F326;</span>
+                    {% elif leeward_ob_wx == 'Heavy Rain' %}
+                      <span>&#x1F327;</span>
+                    {% elif leeward_ob_wx == 'Heavy Rain Fog/Mist' %}
+                      <span>&#x1F327;</span>
+                    {% elif leeward_ob_wx == 'Thunderstorms' %}
+                      <span>&#x26C8;</span>
+                    {% else %}
+                      <span>&#x26C5;</span>
+                    {% endif %}
+                  </span>
+
+                  <a style="color:darkblue;">
+                    <span>&nbsp{{ leeward_ob_wx }}</span>
+                    <span style="font-size:30px;">&#127777;</span>&nbsp{{ leeward_ob_temp }}
+                    <span style="font-size:30px;">&#127788;</span>&nbsp{{ leeward_ob_wind }}
+                  </a>
+                </strong></p>
+
+              <!-- 3-Day Forecast -->
+              <div class="accordion" id="accordion20">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="heading20">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse20" aria-expanded="true" aria-controls="collapse20">
+                      3-Day Forecast
+                    </button>
+                  </h2>
+                  <div id="collapse20" class="accordion-collapse collapse" aria-labelledby="heading20" data-bs-parent="#accordion20">
+                    <div class="accordion-body" style="color:darkblue; font-size:15px;">
+                        <p><b>{{ zone3_fcst1 }}</b></p>
+                        <hr>
+                        <p>{{ zone3_fcst2 }}</p>
+                        <p>{{ zone3_fcst3 }}</p>
+                        <p>{{ zone3_fcst4 }}</p>
+                        <p>{{ zone3_fcst5 }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <!-- End 3-Day Forecast -->
+            <hr>
+          <!-- Trail and Waterfall Conditions -->
+            <h5 style="color:green"><center><i><strong>Trail & Waterfall Conditions</strong></i></center></h5>
+
+            <div class="accordion" id="accordion21">
+
+              <!-- Start accordian item1-->
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="heading21">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse21" aria-expanded="true" aria-controls="collapse21">
+                    Leeward
+                  </button>
+                </h2>
+                <div id="collapse21" class="accordion-collapse collapse" aria-labelledby="heading21" data-bs-parent="#accordion21">
+                  <div class="accordion-body" style="color:darkblue; font-size:15px;">
+
+                    <!-- Hiking Trails -->
+                      <ul class="list-inline"><strong>
+                        <li class="list-inline-item">~ Red Dirt Waterfall ~</li>
+                      </ul></strong>
+
+                      <p><span class="badge badge-pill badge-success">{{ leeward_mud1 }}&nbsp
+                        &nbsp &nbsp
+                        {% if leeward_mud1 == 'Conditions: Mostly Dry' %}
+                          <img src="/static/mostly-dry-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif leeward_mud1 == 'Conditions: Slightly Muddy' %}
+                          <img src="/static/slightly-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif leeward_mud1 == 'Conditions: Muddy' %}
+                          <img src="/static/muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% elif leeward_mud1 == 'Conditions: Very Muddy' %}
+                          <img src="/static/very-muddy-icon.png" style="width:35px;height:30px;"></p></span>
+                        {% endif %}
+
+                      <p><span class="badge badge-pill badge-primary">{{ leeward_falls1 }}&nbsp
+                        &nbsp &nbsp
+                        {% if leeward_falls1 == 'Waterfalls Flowing: Dry-Weak' %}
+                          <img src="/static/weak-trickle-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif leeward_falls1 == 'Waterfalls Flowing: Weak-Light' %}
+                          <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif leeward_falls1 == 'Waterfalls Flowing: Light' %}
+                          <img src="/static/weak-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif leeward_falls1 == 'Waterfalls Flowing: Light-Moderate' %}
+                          <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif leeward_falls1 == 'Waterfalls Flowing: Moderate' %}
+                          <img src="/static/partial-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif leeward_falls1 == 'Waterfalls Flowing: Moderate-Strong' %}
+                          <img src="/static/half-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% elif leeward_falls1 == 'Waterfalls Flowing: Strong' %}
+                          <img src="/static/full-icon.png" style="width:25px;height:40px;"></p></span>
+                        {% endif %}
+
+                        <hr>
+
+                  </div>
+                </div>
+              </div>
+              <!-- End accordian item1-->
+
+            </div> <!-- End Accordian -->
+
+          </div> <!-- End Card 3 -->
+
+
+      </div> <!-- Card Deck 1 DIV END -->
+
+        <!-- Card Deck 2 Begin -->
+      <div class="card-deck row p-4">
+
+         <!-- Card 6 -->
+        <div class="card p-2" style="background-color:#E0F2F1">
+          <p style="text-align: left;">
+              <img class="img-fluid" src="https://www.weather.gov/images/hfo/satellite/Kauai_VIS_loop.gif" alt="https://www.weather.gov/images/hfo/satellite/Kauai_VIS_loop.gif"; "Responsive image";>
+          </p>
+
+        </div>
+          <!-- End Card 6 -->
+
+      </div> <!-- Card Deck 2 DIV END -->
+
+
+    </main>
+
+    <footer class="text-muted">
+      <div class="container">
+        <p class="float-right">
+          <a href="#">Back to top</a>
+        </p>
+        <p>
+        </p>
+        <!--
+        <p> &copy; Hikeit Hawaii LLC</p>
+        -->
+        <p> Follow us on <a href="https://www.facebook.com/HikeitHawaii">Facebook</a> and <a href="https://www.instagram.com/hikeithawaii/">Instagram</a>.</p>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+    <!-- Optional JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
