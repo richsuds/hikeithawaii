@@ -42,6 +42,7 @@
     <meta name="msapplication-TileImage" content="/static/hikeithawaiilogo_favicon.png">
     <meta name="theme-color" content="#ffffff">
 
+
     <!-- Sunrise/Sunset Icons -->
     <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
 
@@ -148,12 +149,12 @@
                       <span style="text-align: center; font-size:30px; color:yellow;" class="iconify" data-icon="wi-sunrise" data-inline="false"></span>
                       <strong>{{ sunrise }}</strong>
                       <small><small> (Dawn: {{ dawn }}) </small></small>
-                    </div><br><hr>
+                    </div>
                     <div class="col-sm">
                       <span style="text-align: center; font-size:33px; color:orange;" class="iconify" data-icon="wi-sunset" data-inline="false"></span>
                       <strong>{{ sunset }}</strong>
                       <small><small> (Dusk: {{ dusk }}) </small></small>
-                    </div><br><hr>
+                    </div><hr>
                     <div class="col-sm">
                       <a style="color:white; font-size:35px;">
                       {% if moon_phase == 'New Moon' %}
