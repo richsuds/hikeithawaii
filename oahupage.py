@@ -454,7 +454,7 @@ def rain_calc():
     nanakuli_total = float( (PLHH1 + WNVH1 + WBHH1 + WAIH1 + HOFH1 ) / 5)
     makakilo_total = float( (PLHH1 + LUAH1 + HJR + HOFH1) / 4)
     kolekole_total = float( (SCBH1 + WAFH1) / 3 )
-    diamond_head_total = float( (NIUH1 + PFSH1 - .15) / 2 )
+    diamond_head_total = float( (NIUH1 + PFSH1 * .5) / 3 )
     koko_total = float( (HAJH1 + NIUH1 + KMHH1 - .15) / 3 )
     moanalua_total = float( (MOAH1 + MOGH1) / 2 )
     aiea_total = float( (TNLH1 + MOAH1 + MOGH1) / 3 )
@@ -666,7 +666,7 @@ def rain_calc():
            waipuhia_mud, waipuhia_falls1,
            manana_waimano_ridge_mud, manana_waimano_ridge_falls1,
            waipuhia_mud, waipuhia_falls1,
-           manana_waimano_falls_mud, manana_waimano_falls2,
+           manana_waimano_falls_mud, manana_waimano_falls1,
            manoa_mud, manoa_falls3,
            kuliouou_mud, kuliouou_falls3,
            jackass_lulumahu_mud, jackass_lulumahu_falls1,
