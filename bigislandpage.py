@@ -636,7 +636,7 @@ def zoneforecast(zone):
     return valid_time1, wx1, valid_time2, wx2, valid_time3, wx3, valid_time4, wx4, valid_time5, wx5
 
 # Big Island North and East Forecast Variables parsed
-north_east_fcst = (zoneforecast('HIZ025'))[0:10]
+north_east_fcst = (zoneforecast('HIZ053'))[0:10]
 north_east_vt1 = north_east_fcst[0]
 north_east_wx1 = north_east_fcst[1]
 north_east_vt2 = north_east_fcst[2]
@@ -657,7 +657,7 @@ north_east_fcst4 = (north_east_vt4 + ': ' + north_east_wx4)
 north_east_fcst5 = (north_east_vt5 + ': ' + north_east_wx5)
 
 # Big Island South Forecast Variables parsed
-south_fcst = (zoneforecast('HIZ024'))[0:10]
+south_fcst = (zoneforecast('HIZ051'))[0:10]
 south_vt1 = south_fcst[0]
 south_wx1 = south_fcst[1]
 south_vt2 = south_fcst[2]

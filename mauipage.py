@@ -510,7 +510,7 @@ def zoneforecast(zone):
     return valid_time1, wx1, valid_time2, wx2, valid_time3, wx3, valid_time4, wx4, valid_time5, wx5
 
 # Windward Haleakala  Forecast Variables parsed
-windward_haleakala_fcst = (zoneforecast('HIZ020'))[0:10]
+windward_haleakala_fcst = (zoneforecast('HIZ047'))[0:10]
 windward_haleakala_vt1 = windward_haleakala_fcst[0]
 windward_haleakala_wx1 = windward_haleakala_fcst[1]
 windward_haleakala_vt2 = windward_haleakala_fcst[2]
@@ -550,7 +550,7 @@ haleakala_summit_fcst4 = (haleakala_summit_vt4 + ': ' + haleakala_summit_wx4)
 haleakala_summit_fcst5 = (haleakala_summit_vt5 + ': ' + haleakala_summit_wx5)
 
 # Leeward Haleakala  Forecast Variables parsed
-leeward_haleakala_fcst = (zoneforecast('HIZ021'))[0:10]
+leeward_haleakala_fcst = (zoneforecast('HIZ050'))[0:10]
 leeward_haleakala_vt1 = leeward_haleakala_fcst[0]
 leeward_haleakala_wx1 = leeward_haleakala_fcst[1]
 leeward_haleakala_vt2 = leeward_haleakala_fcst[2]

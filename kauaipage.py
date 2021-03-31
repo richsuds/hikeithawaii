@@ -494,7 +494,7 @@ def zoneforecast(zone):
     return valid_time1, wx1, valid_time2, wx2, valid_time3, wx3, valid_time4, wx4, valid_time5, wx5
 
 # Windward  Forecast Variables parsed
-windward_fcst = (zoneforecast('HIZ002'))[0:10]
+windward_fcst = (zoneforecast('HIZ030'))[0:10]
 windward_vt1 = windward_fcst[0]
 windward_wx1 = windward_fcst[1]
 windward_vt2 = windward_fcst[2]

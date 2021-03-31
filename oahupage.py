@@ -792,7 +792,7 @@ def zoneforecast(zone):
     return valid_time1, wx1, valid_time2, wx2, valid_time3, wx3, valid_time4, wx4, valid_time5, wx5
 
 # Koolau Forecast Variables parsed
-koolau_fcst = (zoneforecast('HIZ008'))[0:10]
+koolau_fcst = (zoneforecast('HIZ035'))[0:10]
 koolau_vt1 = koolau_fcst[0]
 koolau_wx1 = koolau_fcst[1]
 koolau_vt2 = koolau_fcst[2]
@@ -834,7 +834,7 @@ waianae_fcst5 = (waianae_vt5 + ': ' + waianae_wx5)
 
 
 # South Oahu (Dimanond Head / Koko Head) Forecast Variables parsed
-south_oahu_fcst = (zoneforecast('HIZ005'))[0:10]
+south_oahu_fcst = (zoneforecast('HIZ033'))[0:10]
 south_oahu_vt1 = south_oahu_fcst[0]
 south_oahu_wx1 = south_oahu_fcst[1]
 south_oahu_vt2 = south_oahu_fcst[2]
