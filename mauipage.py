@@ -156,7 +156,7 @@ def rain_stations(day_num_obs):
         KHKH1 = maui_section[maui_section.index('KHKH1') + num]
         PKKH1 = maui_section[maui_section.index('PKKH1') + num+1]
         ##Leeward/Upcountry Sites
-        KPGH1 = maui_section[maui_section.index('KPGH1') + num]
+        #KPGH1 = maui_section[maui_section.index('KPGH1') + num]
         KPNH1 = maui_section[maui_section.index('KPNH1') + num]
         PUKH1 = maui_section[maui_section.index('PUKH1') + num]
         KBSH1 = maui_section[maui_section.index('KBSH1') + num+2]
@@ -171,7 +171,7 @@ def rain_stations(day_num_obs):
 
 
         return(
-                HNAH1, WWKH1, AIKH1, HOG, WUKH1, KHKH1, PKKH1, KPGH1,
+                HNAH1, WWKH1, AIKH1, HOG, WUKH1, KHKH1, PKKH1,
                 KPNH1, PUKH1, KBSH1, KLFH1, ULUH1, KHIH1, KPDH1, WCCH1,
                 P36, LAHH1, MABH1,
 
@@ -299,20 +299,20 @@ WUKH1 = (sort_locations(4))
 KHKH1 = (sort_locations(5))
 PKKH1 = (sort_locations(6))
 ##Leeward/Upcountry Sites
-KPGH1 = (sort_locations(7))
+#KPGH1 = (sort_locations(7))
 
-KPNH1 = (sort_locations(8))
-PUKH1 = (sort_locations(9))
-KBSH1 = (sort_locations(10))
-KLFH1 = (sort_locations(11))
-ULUH1 = (sort_locations(12))
-KHIH1 = (sort_locations(13))
+KPNH1 = (sort_locations(7))
+PUKH1 = (sort_locations(8))
+KBSH1 = (sort_locations(9))
+KLFH1 = (sort_locations(10))
+ULUH1 = (sort_locations(11))
+KHIH1 = (sort_locations(12))
 
-KPDH1 = (sort_locations(14))
-WCCH1 = (sort_locations(15))
-P36   = (sort_locations(16))
-LAHH1 = (sort_locations(17))
-MABH1 = (sort_locations(18))
+KPDH1 = (sort_locations(13))
+WCCH1 = (sort_locations(14))
+P36   = (sort_locations(15))
+LAHH1 = (sort_locations(16))
+MABH1 = (sort_locations(17))
 
 def rain_calc():
     hana_total = float( HNAH1 )
@@ -322,7 +322,7 @@ def rain_calc():
     wailuku_total = float( (WUKH1 + HOG + WCCH1 + KHKH1) / 4 )
     kahakuloa_total = float( KHKH1 )
 
-    kaupo_gap_total = float( KPGH1 )
+    #kaupo_gap_total = float( KPGH1 )
     kepuni_total = float( KPNH1 )
     pukalani_total = float( PUKH1 )
     kula_total = float( KBSH1 + KLFH1 )
@@ -399,8 +399,8 @@ def rain_calc():
     kahakuloa_mud = (conditions(kahakuloa_total))[0]
     kahakuloa_falls = (conditions(kahakuloa_total))[1]
 
-    kaupo_gap_mud = (conditions(kaupo_gap_total))[0]
-    kaupo_gap_falls = (conditions(kaupo_gap_total))[1]
+    #kaupo_gap_mud = (conditions(kaupo_gap_total))[0]
+    #kaupo_gap_falls = (conditions(kaupo_gap_total))[1]
 
     kepuni_mud = (conditions(kepuni_total))[0]
     kepuni_falls = (conditions(kepuni_total))[1]
@@ -432,7 +432,7 @@ def rain_calc():
            kahului_mud, kahului_falls,
            wailuku_mud, wailuku_falls,
            kahakuloa_mud, kahakuloa_falls,
-           kaupo_gap_mud, kaupo_gap_falls,
+           #kaupo_gap_mud, kaupo_gap_falls,
            kepuni_mud, kepuni_falls,
            pukalani_mud, pukalani_falls,
            kula_mud, kula_falls,
@@ -458,24 +458,24 @@ wailuku_mud = conditions[8]
 wailuku_falls = conditions[9]
 kahakuloa_mud = conditions[10]
 kahakuloa_falls = conditions[11]
-kaupo_gap_mud = conditions[12]
-kaupo_gap_falls = conditions[13]
-kepuni_mud = conditions[14]
-kepuni_falls = conditions[15]
-pukalani_mud = conditions[16]
-pukalani_falls = conditions[17]
-kula_mud = conditions[18]
-kula_falls = conditions[19]
-ulupalakua_mud = conditions[20]
-ulupalakua_falls = conditions[21]
-kihei_mud = conditions[22]
-kihei_falls = conditions[23]
-maalaea_mud = conditions[24]
-maalaea_falls = conditions[25]
-waikapu_mud = conditions[26]
-waikapu_falls = conditions[27]
-lahaina_mud = conditions[28]
-lahaina_falls = conditions[29]
+#kaupo_gap_mud = conditions[12]
+#kaupo_gap_falls = conditions[13]
+kepuni_mud = conditions[12]
+kepuni_falls = conditions[13]
+pukalani_mud = conditions[14]
+pukalani_falls = conditions[15]
+kula_mud = conditions[16]
+kula_falls = conditions[17]
+ulupalakua_mud = conditions[18]
+ulupalakua_falls = conditions[19]
+kihei_mud = conditions[20]
+kihei_falls = conditions[21]
+maalaea_mud = conditions[22]
+maalaea_falls = conditions[23]
+waikapu_mud = conditions[24]
+waikapu_falls = conditions[25]
+lahaina_mud = conditions[26]
+lahaina_falls = conditions[27]
 
 
 # ZONE FORECASTS

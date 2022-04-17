@@ -205,7 +205,7 @@ def rain_stations(day_num_obs):
         SCEH1 = oahu_section[oahu_section.index('SCEH1') + num]
         WAFH1 = oahu_section[oahu_section.index('WAFH1') + num]
         POAH1 = oahu_section[oahu_section.index('POAH1') + num]
-        KWLH1 = oahu_section[oahu_section.index('KWLH1') + num-1]
+        #KWLH1 = oahu_section[oahu_section.index('KWLH1') + num-1]
         KMRH1 = oahu_section[oahu_section.index('KMRH1') + num+1]
         PPRH1 = oahu_section[oahu_section.index('PPRH1') + num+1]
         PMHH1 = oahu_section[oahu_section.index('PMHH1') + num+2]
@@ -235,7 +235,7 @@ def rain_stations(day_num_obs):
 
                 NIUH1, PFSH1, ALOH1,
                 HNL, MOAH1, MOGH1, TNLH1, PACH1, WAWH1, MITH1, SCBH1,
-                SCEH1, WAFH1, POAH1, KWLH1, KMRH1, PPRH1, PMHH1, DLGH1,
+                SCEH1, WAFH1, POAH1, KMRH1, PPRH1, PMHH1, DLGH1,
                 PECH1, KUNH1, WWFH1, HOFH1, PTWH1, HJR, PLHH1,
                 LUAH1, WNVH1, WBHH1, WAIH1, MKHH1, MKRH1, MKGH1, MAPH1, KKRH1
 
@@ -252,15 +252,15 @@ def rain_stations(day_num_obs):
 all_obs1 = rain_stations(day_one_obs)
 all_obs2 = rain_stations(day_two_obs)
 
-all_obs1_03 = (list(all_obs1[0])[0:60])
-all_obs1_06 = (list(all_obs1[1])[0:60])
-all_obs1_12 = (list(all_obs1[2])[0:60])
-all_obs1_24 = (list(all_obs1[3])[0:60])
+all_obs1_03 = (list(all_obs1[0])[0:59])
+all_obs1_06 = (list(all_obs1[1])[0:59])
+all_obs1_12 = (list(all_obs1[2])[0:59])
+all_obs1_24 = (list(all_obs1[3])[0:59])
 
-all_obs2_03 = (list(all_obs2[0])[0:60])
-all_obs2_06 = (list(all_obs2[1])[0:60])
-all_obs2_12 = (list(all_obs2[2])[0:60])
-all_obs2_24 = (list(all_obs2[3])[0:60])
+all_obs2_03 = (list(all_obs2[0])[0:59])
+all_obs2_06 = (list(all_obs2[1])[0:59])
+all_obs2_12 = (list(all_obs2[2])[0:59])
+all_obs2_24 = (list(all_obs2[3])[0:59])
 #print(all_obs2_24)
 
 def sort_locations(loc_num):
@@ -398,31 +398,31 @@ SCEH1 = (sort_locations(32))
 WAFH1 = (sort_locations(33))
 
 POAH1 = (sort_locations(34))
-KWLH1 = (sort_locations(35))
-KMRH1 = (sort_locations(36))
-PPRH1 = (sort_locations(37))
-PMHH1 = (sort_locations(38))
+#KWLH1 = (sort_locations(35))
+KMRH1 = (sort_locations(35))
+PPRH1 = (sort_locations(36))
+PMHH1 = (sort_locations(37))
 
-DLGH1 = (sort_locations(39))
-PECH1 = (sort_locations(40))
-KUNH1 = (sort_locations(41))
-WWFH1 = (sort_locations(42))
-HOFH1 = (sort_locations(43))
+DLGH1 = (sort_locations(38))
+PECH1 = (sort_locations(39))
+KUNH1 = (sort_locations(40))
+WWFH1 = (sort_locations(41))
+HOFH1 = (sort_locations(42))
 
-PTWH1 = (sort_locations(44))
-HJR   = (sort_locations(45))
-PLHH1 = (sort_locations(46))
-LUAH1 = (sort_locations(47))
-WNVH1 = (sort_locations(48))
+PTWH1 = (sort_locations(43))
+HJR   = (sort_locations(44))
+PLHH1 = (sort_locations(45))
+LUAH1 = (sort_locations(46))
+WNVH1 = (sort_locations(47))
 
-WBHH1 = (sort_locations(49))
-WAIH1 = (sort_locations(50))
-MKHH1 = (sort_locations(51))
-MKRH1 = (sort_locations(52))
-MKGH1 = (sort_locations(53))
+WBHH1 = (sort_locations(48))
+WAIH1 = (sort_locations(49))
+MKHH1 = (sort_locations(50))
+MKRH1 = (sort_locations(51))
+MKGH1 = (sort_locations(52))
 
-MAPH1 = (sort_locations(54))
-KKRH1 = (sort_locations(55))
+MAPH1 = (sort_locations(53))
+KKRH1 = (sort_locations(54))
 
 
 def rain_calc():
@@ -444,8 +444,8 @@ def rain_calc():
     kuliouou_total = float( NIUH1 )
     jackass_lulumahu_total = float( NUUH1 )
     kapena_total = float( (STVH1 + ALOH1) / 2 )
-    pupukea_total = float( (KWLH1 + KMRH1 + PPRH1) / 3 )
-    haleiwa_total = float( (KWLH1 + KMRH1 + PMHH1) / 3 )
+    pupukea_total = float( (KMRH1 + PPRH1) / 3 )
+    haleiwa_total = float( (KMRH1 + PMHH1) / 3 )
     makapuu_total = float( HAJH1 + (KMHH1 * .25))
     #kaena_total = float( ( DLGH1 + MKRH1 + MKGH1 + MAPH1) / 4)
     kaena_total = float( KKRH1 )
